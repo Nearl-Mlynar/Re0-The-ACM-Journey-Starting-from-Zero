@@ -1,1 +1,28 @@
-site_name: My Docs
+site_name: Re0-The-ACM-Journey-Starting-from-Zero
+theme:
+  name: material
+  palette:
+    # 亮色模式
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: "#42B983"  # OI 绿
+      accent: "#FF4500"   # 橙红点缀
+      toggle:
+        icon: material/weather-night
+        name: 切换到暗色模式
+    # 暗色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: "#42B983"  # 保持 OI 绿
+      accent: "#FF7700"   # 亮橙更醒目
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到亮色模式
+  features:
+    - navigation.tabs
+    - search.suggest
+    - content.code.copy
+    - navigation.top
+nav:
+  - 首页: index.md
+  - 总结: 暑假学习计划总结.md

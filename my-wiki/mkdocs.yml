@@ -54,13 +54,13 @@ extra_css:
 extra_javascript:
   - javascripts/highlight.js  # 代码高亮（若需自定义颜色，可在css中配置）
 
-# 导航配置（修正格式错误，优化ACM学习层级）
+# 导航配置：仅修复语法错误（basic_data_structure.md → 基本数据结构.md），其他完全保留你的原有结构
 nav:
   - 首页: index.md
   - 学习总结:
     - 暑假学习总结.md
   - 数据结构:  # 大类：按ACM常用分类拆分
-    - 基本数据结构概述: basic_data_structure.md  # 新增：概述页（归类基础概念）
+    - 基本数据结构概述: 基本数据结构.md  # 仅修复：匹配本地实际文件（原basic_data_structure.md不存在）
     - 线性结构:  # 细分分类（方便扩展）
       - 栈.md
       - 单调栈.md
@@ -93,12 +93,12 @@ nav:
     - ACM常用工具.md  # 新增：工具汇总（编译器/调试技巧等）
     - OI-Wiki 官方链接.md  # 新增：关联原版OI-Wiki
 
-# 插件配置：轻量化且贴合ACM文档需求
+# 插件配置：仅修复2个错误参数（不改动其他插件）
 plugins:
   - search:  # 中文搜索优化
       lang: zh
       separator: '[\s\-\_\+\，\。\；]+'  # 支持中文标点分词（提升搜索准确率）
-      prebuild_index: true  # 预构建索引（大文档更快）
+      # 移除不支持的prebuild_index参数（原错误点）
   - table-reader:  # 支持外部CSV/TSV表格（适合整理题单/复杂度对比）
   - mkdocstrings:  # 代码文档自动生成（若包含代码实现，可选）
       default_handler: python
@@ -109,10 +109,10 @@ plugins:
             show_source: true  # 显示代码源文件（方便查看实现）
   - git-revision-date-localized:  # 新增：显示文档最后更新时间（提升可信度）
       type: date
-      format: yyyy-MM-dd
+      date_format: yyyy-MM-dd  # 修复：原format改为插件支持的date_format
       locale: zh
 
-# Markdown扩展：增强ACM文档编写能力（公式/图表/代码块）
+# Markdown扩展：完全保留你的原有配置，不做任何改动
 markdown_extensions:
   - admonition:  # 提示框（note/tip/warning/important，OI-Wiki常用）
   - pymdownx.details:  # 折叠面板（隐藏冗长推导/代码）

@@ -1,0 +1,2446 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="从零开始的 ACM 学习之路，参考 OI-Wiki 风格整理的算法与数据结构笔记">
+      
+      
+        <meta name="author" content="Sakura-lq">
+      
+      
+        <link rel="canonical" href="https://github.com/Sakura-lq/Re0-The-ACM-Journey-Starting-from-Zero/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/">
+      
+      
+        <link rel="prev" href="../../%E6%9A%91%E5%81%87%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">
+      
+      
+        <link rel="next" href="../../%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>滑动窗口 - Re0-The-ACM-Journey-Starting-from-Zero</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,300i,400,400i,700,700i%7CConsolas:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans SC";--md-code-font:"Consolas"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/variables.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/main.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Re0-The-ACM-Journey-Starting-from-Zero" class="md-header__button md-logo" aria-label="Re0-The-ACM-Journey-Starting-from-Zero" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Re0-The-ACM-Journey-Starting-from-Zero
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              滑动窗口
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="indigo"  aria-label="切换到深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换到深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="切换到浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换到浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Sakura-lq/Re0-The-ACM-Journey-Starting-from-Zero" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Re0-ACM-Journey
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  首页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E6%9A%91%E5%81%87%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="md-tabs__link">
+          
+  
+  
+  学习总结
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  算法
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-tabs__link">
+          
+  
+  
+  数据结构
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/%E6%B4%9B%E8%B0%B7%E6%9D%BF%E5%AD%90%E9%A2%98%E5%8D%95/" class="md-tabs__link">
+          
+  
+  
+  资源链接
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Re0-The-ACM-Journey-Starting-from-Zero" class="md-nav__button md-logo" aria-label="Re0-The-ACM-Journey-Starting-from-Zero" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Re0-The-ACM-Journey-Starting-from-Zero
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Sakura-lq/Re0-The-ACM-Journey-Starting-from-Zero" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Re0-ACM-Journey
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    首页
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    学习总结
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    学习总结
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E6%9A%91%E5%81%87%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    暑假学习计划总结
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    算法
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    算法
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    滑动窗口
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    滑动窗口
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        滑动窗口的定义
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定长滑动窗口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="定长滑动窗口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不定长的滑动窗口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="不定长的滑动窗口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最长子数组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最短子数组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        求子数组个数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    字符串
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../字符串/KMP算法.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../字符串/Manacher算法.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据结构
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据结构
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基本数据结构概述
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    线性结构
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    线性结构
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_1" id="__nav_4_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    栈
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    栈
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8D%95%E8%B0%83%E6%A0%88/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    单调栈
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2_2" id="__nav_4_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    队列
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    队列
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%BE%AA%E7%8E%AF%E9%98%9F%E5%88%97%28Circular_Queue%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    循环队列(Circular_Queue)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97%28deque%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    双端队列(deque)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%28%E5%A0%86heap%29/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    优先队列(堆heap)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../链表.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    树形结构
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    树形结构
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../二叉树基础.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../线段树.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../平衡树（入门）.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    图论基础
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    图论基础
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../图的存储与遍历.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../最短路径.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    资源链接
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    资源链接
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/%E6%B4%9B%E8%B0%B7%E6%9D%BF%E5%AD%90%E9%A2%98%E5%8D%95/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    洛谷板题题单
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/STL%E5%BA%93%E9%80%9F%E6%9F%A5%E8%A1%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    STL库详解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E8%B5%84%E6%BA%90%E6%B1%87%E6%80%BB/%E5%B8%B8%E7%94%A8%E5%88%B7%E9%A2%98%E6%8F%92%E4%BB%B6%E4%B8%8E%E5%BA%94%E7%94%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    常用刷题插件与应用
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        滑动窗口的定义
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        定长滑动窗口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="定长滑动窗口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        不定长的滑动窗口
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="不定长的滑动窗口">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最长子数组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最短子数组
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        例题
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        求子数组个数
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        总结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>滑动窗口</h1>
+
+<h2 id="_1">滑动窗口的定义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>所谓滑动窗口就是一种特殊的遍历数组方法，即使用一对指针来标识一个窗口的左右边界，形成一个连续区间。 </p>
+<p>滑动窗口的核心点是：窗口的大小，窗口何时移动 (其实窗口状态在窗口移动时具有单调性即(合法 -&gt; 不合法 -&gt; 合法))，如何维护窗口内的元素(左指针移动时窗口排出元素，右指针移动时把元素加入窗口)。</p>
+<p>通过对窗口长度来划分，又可以分为<strong>定长</strong>滑动窗口与<strong>不定长</strong>滑动窗口两类。</p>
+<blockquote>
+<p>总结：滑动窗口这类题就是要找到：窗口改变的临界条件，窗口的长度，需要维护的信息</p>
+<p><img alt="滑动窗口题单 双指针题单 力扣题目 灵茶山艾府" src="https://pic.leetcode.cn/1718242805-sqSjqc-lc1456.png" /></p>
+<p>ps 图片引用自：leetcode灵神题单(https://leetcode.cn/discuss/post/3578981/ti-dan-hua-dong-chuang-kou-ding-chang-bu-rzz7/) </p>
+</blockquote>
+<h2 id="_2">定长滑动窗口<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>定长滑动窗口其实顾名思义也就是窗口长度一定的滑动窗口，一般在题目中会具有鲜明的特点，例如：连续数组/子串/子序列长度为 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 等。
+关于这种定长的题目常常以到达长度 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 作为窗口移动状态，然后元素的维护，贡献总计也大多数是在判定条件为 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 时进行操作与维护的。</p>
+<h3 id="_3">例题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<details> 
+    <summary>
+    <a href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/">灵神题单模板题:1456. 定长子串中元音的最大数目</a>   
+    </summary>
+
+​    给你字符串 s 和整数 k 。<br>
+​    请返回字符串 s 中长度为 k 的单个子字符串中可能包含的最大元音字母数。<br>
+​    英文中的 元音字母 为（a, e, i, o, u）。<br>
+​    示例 1：<br>
+​    输入：s = "abciiidef", k = 3<br>
+​    输出：3<br>
+​    解释：子字符串 "iii" 包含 3 个元音字母。<br>
+​    示例 2：<br>
+​    输入：s = "aeiou", k = 2<br>
+​    输出：2<br>
+​    解释：任意长度为 2 的子字符串都包含 2 个元音字母。<br>
+​    示例 3：<br>
+​    输入：s = "leetcode", k = 3<br>
+​    输出：2<br>
+​    解释："lee"、"eet" 和 "ode" 都包含 2 个元音字母。<br>
+​    示例 4：<br>
+​    输入：s = "rhythms", k = 4<br>
+​    输出：0<br>
+​    解释：字符串 s 中不含任何元音字母。<br>
+​    示例 5：<br>
+​    输入：s = "tryhard", k = 4<br>
+​    输出：1<br>
+​    提示：<br>
+​    1 <= s.length <= 10^5<br>
+​    s 由小写英文字母组成<br>
+​    1 <= k <= s.length<br>
+</details>
+
+<details>
+    <summary>代码实现</summary>
+
+我们要得到所有长度恰好为 k 的所有子串，最多可以包含多少个元音字母。</br>
+那其实题目意思就已经把滑动窗口的类型以及所需要维护的信息都已经明了了。</br>
+我们需要维护一个窗口大小固定为 k 的窗口，可以使用一对指针(left, right)来表示左右边界， 维护的信息为窗口内的元音数量，可以使用一个count变量来维护，代码中为了方便判断是不是元音我采取了使用一个集合 set 来存储所有元音。</br>
+我们可以通过以窗口长度是否有达到 k 来进行操作，因此每次循环将 right 右移，是窗口长度扩大 1 ，并且判断新进入的元素是不是元音维护 count ,当窗口长度到达 k 时，计算一次 count，然后将 left 右移，是窗口大小缩小为 k - 1，然后同时判断排出去的元素是不是元音从而维护好 count。</br>
+优化: 由于是定长滑动窗口其实也可以只使用一个右指针 right 就可以表示, left = right - k + 1。
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxVowels</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">st</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="sc">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;e&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;i&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;o&#39;</span><span class="p">,</span><span class="w"> </span><span class="sc">&#39;u&#39;</span><span class="p">};</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">right</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]))</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">right</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">cnt</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]))</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">cnt</span><span class="o">--</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+</details>
+
+<details> 
+    <summary>
+        <a href="https://leetcode.cn/problems/maximum-number-of-occurrences-of-a-substring/">灵神题单模板题:1297. 子串的最大出现次数</a>    
+    </summary>
+
+​    给你一个字符串 s ，请你返回满足以下条件且出现次数最大的 任意 子串的出现次数。</br>
+​    子串中不同字母的数目必须小于等于 maxLetters 。</br>
+​    子串的长度必须大于等于 minSize 且小于等于 maxSize 。</br>
+​    示例 1：</br>
+​    输入：s = "aababcaab", maxLetters = 2, minSize = 3, maxSize = 4 </br>
+​    输出：2 </br>
+​    解释：子串 "aab" 在原字符串中出现了 2 次。</br>
+​    它满足所有的要求：2 个不同的字母，长度为 3 （在 minSize 和 maxSize 范围内）。</br>
+​    示例 2：</br>
+​    输入：s = "aaaa", maxLetters = 1, minSize = 3, maxSize = 3 </br>
+​    输出：2 </br>
+​    解释：子串 "aaa" 在原字符串中出现了 2 次，且它们有重叠部分。</br>
+​    示例 3：</br>
+​    输入：s = "aabcabcab", maxLetters = 2, minSize = 2, maxSize = 3 </br>
+​    输出：3 </br>
+​    示例 4：</br>
+​    输入：s = "abcde", maxLetters = 2, minSize = 3, maxSize = 3 </br>
+​    输出：0 </br>
+​    提示：</br>
+​    1 <= s.length <= 10^5 </br>
+​    1 <= maxLetters <= 26 </br>
+​    1 <= minSize <= maxSize <= min(26, s.length) </br>
+​    s 只包含小写英文字母。</br>  
+</details>
+
+<details>
+    <summary>代码实现</summary>
+
+其实本题乍一看好像窗口大小不是固定的，minSize  <= len <= maxSize 为窗口可能的大小，但其实仔细一想，既然他想要最大可能的字串个数。</br>
+那么我们是不是应该「贪心」的想一想，如果我想要字串个数我肯定是想要字串越多越好越短越好，因为可以增大发现概率和匹配概率，因此其实也就又回到固定长度的滑动窗口问题，窗口大小为至少子串的长度 minSize。</br>
+需要维护的信息有两个: 1.当前窗口中不同字母的数目使用一个 hash表cnt 存储每个字母出现的次数 + count 变量计数，2.每一段子串出现的频率次数使用一个 unordered_map 来存储。</br>
+那么其实和上一题思路差别不大，只是需要在计算贡献时不是一到长度为 minLtter 就要算一次，而是需要满足 count <= maxLetter 时才计算当前子串贡献，当前窗口内形成的子串可以使用 substr(right - minSize + 1, minSize); 来获取 </br>
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">maxFreq</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxLetters</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">minSize</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">maxSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">hash</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">cnt</span><span class="p">[</span><span class="mi">26</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">cnt</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">++</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">minSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="k">continue</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">maxLetters</span><span class="p">)</span><span class="w"> </span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">mx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">mx</span><span class="p">,</span><span class="w"> </span><span class="o">++</span><span class="n">hash</span><span class="p">[</span><span class="n">s</span><span class="p">.</span><span class="n">substr</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">minSize</span><span class="p">)]);</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="o">--</span><span class="n">cnt</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">count</span><span class="o">--</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mx</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+</details>
+
+<p>一般题目都会给出窗口具体大小，不过有时会把这个信息隐含在别的语句中，需要自己去稍微拆解之后得到，确定好在滑动窗口中需要维护的信息，滑动窗口适用于连续子段存在合法状态与不合法状态的题目中</p>
+<h2 id="_4">不定长的滑动窗口<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>不定长滑动窗口并没有在题目中具体的长度规定，一般是满足限制条件即为一个窗口的长度，例如：一段连续子串中至少需要包含所有元音字母的最小/最大字串等等，因此在不定长滑动窗口主要可以分为三类问题：求最长子数组，求最短子数组，求满足特定要求的所有子数组个数。</p>
+<h3 id="_5">最长子数组<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>一般在这个问题中，一般满足窗口大小<strong>越短越合法</strong>，并且一般都是以限制长度的最大值的条件，也就是<strong>至少</strong>的问题，因此我们窗口的状态大概是 合法 -&gt; 不合法 -&gt; 合法，如果合法就一直移动右指针 <span class="arithmatex"><span class="MathJax_Preview">right</span><script type="math/tex">right</script></span> 使数组扩大，如果扩大之后使当前窗口不合法，那么就一直移动左指针直到窗口重新变成合法窗口，每次循环都记一次大小 <span class="arithmatex"><span class="MathJax_Preview">(res = res + (right - left + 1))</span><script type="math/tex">(res = res + (right - left + 1))</script></span>。</p>
+<h3 id="_6">例题<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<details>
+    <summary>
+        <a href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">leetcode灵神题单:3. 无重复字符的最长子串</a> 
+    </summary>
+
+​    给定一个字符串 s ，请你找出其中不含有重复字符的 最长 子串 的长度。</br>
+​    示例 1: </br>
+​    输入: s = "abcabcbb" </br>
+​    输出: 3 </br>
+​    解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。注意 "bca" 和 "cab" 也是正确答案。</br>
+​    示例 2: </br>
+​    输入: s = "bbbbb" </br>
+​    输出: 1 </br>
+​    解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。</br>
+​    示例 3: </br>
+​    输入: s = "pwwkew" </br>
+​    输出: 3 </br>
+​    解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。</br>
+​        请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。</br>
+​    提示：</br>
+​    0 <= s.length <= 5 * 10<sup>4</sup> </br>
+​    s 由英文字母、数字、符号和空格组成 </br>
+</details>
+
+<details>
+    <summary>代码实现</summary>
+
+由题目限制条件可得窗口合法状态需要满足不含有重复元素，那么我们需要维护的信息也就是这个窗口内的元素，窗口合法状态为 count = 0,可以使用 hash表cnt 和一个count来记录窗口内的重复元素种类，当count >= 0 时，left就要右移，将窗口缩小直到窗口内的元素没有重复，即 count = 0，每次循环之后记一次长度，即 mx = max(mx, right - left + 1);
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="w"> </span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">lengthOfLongestSubstring</span><span class="p">(</span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="n">hash</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">        </span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="w"> </span><span class="n">right</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">hash</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]]</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">hash</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">hash</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">]]</span><span class="o">--</span><span class="p">;</span>
+<span class="w">                </span><span class="n">left</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">len</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">len</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+</details>
+
+<h3 id="_7">最短子数组<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>在这个问题中与上一个问题相反，一般在这个问题中<strong>越长越合法</strong>，并且一般都是限制了窗口的最小长度也就是<strong>至多</strong>的问题，因此我们的窗口状态是 不合法 -&gt; 合法 -&gt; 不合法，如果不合法就一直移动右指针 <span class="arithmatex"><span class="MathJax_Preview">right</span><script type="math/tex">right</script></span> 使数组扩大，如果扩大之后使当前窗口合法，那么就一直移动左指针 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span> 直到窗口重新变成不合法窗口，每次循环都记一次大小 <span class="arithmatex"><span class="MathJax_Preview">(mm = min(mm, right - left + 1))</span><script type="math/tex">(mm = min(mm, right - left + 1))</script></span>。</p>
+<h3 id="_8">例题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<details>
+    <summary>
+        <a href="https://leetcode.cn/problems/minimum-size-subarray-in-infinite-array/">leetcode灵神题单:2875. 无限数组的最短子数组</a> 
+    </summary>
+
+​    给你一个下标从 0 开始的数组 nums 和一个整数 target 。</br>
+​    下标从 0 开始的数组 infinite_nums 是通过无限地将 nums 的元素追加到自己之后生成的。 </br>
+​    请你从 infinite_nums 中找出满足 元素和 等于 target 的 最短 子数组，并返回该子数组的长度。如果不存在满足条件的子数组，返回 -1 。 </br>
+​    示例 1： </br>
+​    输入：nums = [1,2,3], target = 5 </br>
+​    输出：2 </br>
+​    解释：在这个例子中 infinite_nums = [1,2,3,1,2,3,1,2,...] 。 </br>
+​    区间 [1,2] 内的子数组的元素和等于 target = 5 ，且长度 length = 2 。 </br>
+​    可以证明，当元素和等于目标值 target = 5 时，2 是子数组的最短长度。 </br>
+​    示例 2： </br>
+​    输入：nums = [1,1,1,2,3], target = 4 </br>
+​    输出：2 </br>
+​    解释：在这个例子中 infinite_nums = [1,1,1,2,3,1,1,1,2,3,1,1,...]. </br>
+​    区间 [4,5] 内的子数组的元素和等于 target = 4 ，且长度 length = 2 。 </br>
+​    可以证明，当元素和等于目标值 target = 4 时，2 是子数组的最短长度。 </br>
+​    示例 3： </br>
+​    输入：nums = [2,4,6,8], target = 3 </br>
+​    输出：-1 </br>
+​    解释：在这个例子中 infinite_nums = [2,4,6,8,2,4,6,8,...] 。 </br>
+​    可以证明，不存在元素和等于目标值 target = 3 的子数组。 </br>
+​    提示： </br>
+​    1 <= nums.length <= 10<sup>5</sup></br>
+​    1 <= nums[i] <= 10<sup>5</sup> </br>
+​    1 <= target <= 10<sup>9</sup> </br>
+</details>
+
+<details>
+    <summary>代码实现</summary>
+
+根据题目意思可得这是一个无限循环数组长度为无限长，但其实我们只需要遍历 2 * n 的长度就行，因为窗口内循环节在原数组完全拼接在后面时一定可以全部找到(也就是说因为如果 target 很大，那我们可以先把整个数组之和算出来记作 sum，然后算出倍数 k = target / sum, 以及余数 yu = target % sum 也就是不满足取整个数组段(小于 sum)，其实我们也就是需要找到这个小于一整个数组和的部分如果存在那么我们必然可以在后面拼接 k 段完整的数组),然后又因为他是想要找到元素和为 target 的最短子数组，由此我们可以得到我们需要维护的信息当前窗口内元素和 res, 窗口临界条件为 res > yu, 当 res > yu 时，left就要右移，将窗口缩小直到窗口内元素和 < yu，即 cnt < k，每次循环之后判断是否满足 res == k, 如果等于就更新一下 mm = min(mm, right - left + 1LL);这里有个小细节如果 mm == LLONG_MAX，也就是等于初始值时，证明没有一个子段满足 res == yu，则输出 -1，否则就输出 mm + k * n
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">minSizeSubarray</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">target</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accumulate</span><span class="p">(</span><span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span><span class="w"> </span><span class="mf">0L</span><span class="n">L</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">yu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">target</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LLONG_MAX</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">n</span><span class="p">];</span>
+
+<span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">yu</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">res</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">n</span><span class="p">];</span>
+<span class="w">                </span><span class="n">l</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">res</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">yu</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">mm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">min</span><span class="p">(</span><span class="n">mm</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">1L</span><span class="n">L</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">mm</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">LLONG_MAX</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="mi">-1</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">mm</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+</details>
+
+<h3 id="_9">求子数组个数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>在这一类问题中，常常会结合前面两类问题一起考，前面两类只需要找最长/最短的一段子数组长度就行，而这个是要计算所有满足特定条件的子数组的数量，在滑动窗口状态上没有什么差别，只是区别在计算贡献上，大概有以下三类子问题：越长越合法型，越短越合法型，恰好满足型。</p>
+<h4 id="_10">越短越合法型<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>根据上面对越短越合法型的子数组的状态转移(合法 -&gt; 不合法 -&gt; 合法)，当窗口合法时不断移动右指针 <span class="arithmatex"><span class="MathJax_Preview">right</span><script type="math/tex">right</script></span> 直到窗口变成非法，由此可得在移动过程中从非法窗口到第一个合法窗口，满足合法窗口的数量有 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span>，那么只需要在求最长子数组的基础上修改贡献语句修改成 <span class="arithmatex"><span class="MathJax_Preview">res = res + right - left + 1</span><script type="math/tex">res = res + right - left + 1</script></span> 即可。</p>
+<h4 id="_11">例题<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<details>
+    <summary>
+        <a href="https://leetcode.cn/problems/count-subarrays-with-score-less-than-k/">leetcode灵神题单:2302. 统计得分小于 K 的子数组数目</a>   
+    </summary>
+
+​    给你一个整数数组 nums 和一个整数 k ，请你返回 nums 中 好 子数组的数目。 </br>
+​    一个子数组 arr 如果有 至少 k 对下标 (i, j) 满足 i < j 且 arr[i] == arr[j] ，那么称它是一个 好 子数组。 </br>
+​    子数组 是原数组中一段连续 非空 的元素序列。</br>
+​    示例 1： </br>
+​    输入：nums = [1,1,1,1,1], k = 10 </br>
+​    输出：1 </br>
+​    解释：唯一的好子数组是这个数组本身。 </br>
+​    示例 2： </br>
+​    输入：nums = [3,1,4,3,2,2,4], k = 2 </br>
+​    输出：4 </br>
+​    解释：总共有 4 个不同的好子数组： </br>
+​    - [3,1,4,3,2,2] 有 2 对。 </br>
+​    - [3,1,4,3,2,2,4] 有 3 对。 </br>
+​    - [1,4,3,2,2,4] 有 2 对。 </br>
+​    - [4,3,2,2,4] 有 2 对。 </br>
+​        提示： </br>
+​        1 <= nums.length <= 10<sup>5</sup> </br>
+​        1 <= nums[i], k <= 10<sup>9</sup> </br>
+​        </details>
+
+<details>
+    <summary>代码实现</summary>
+
+我们要找到分数小于 k 的所有非空子数组数目，根据子数组分数计算也就是 sum * size < k，那么我们需要维护的信息也就很明确了只需要维护一个窗口内元素和 sum，长度可以通过 size = right - left + 1 得到，窗口的临界条件就是 sum * size < k，当 sum * (right - left + 1)  >= k 时, left就要右移，将窗口缩小直到窗口内 sum * (right - left + 1) < k，每次循环之后记一次贡献 res += right - left + 1;
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">countSubarrays</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">];</span>
+
+<span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">sum</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="o">++</span><span class="p">];</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+</details>
+
+<h4 id="_12">越长越合法型<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<p>根据上面对越长越合法型的子数组的状态转移(不合法 -&gt; 合法 -&gt; 不合法)，当窗口合法时不断移动左指针 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span> 直到窗口变成不合法，由此可得在移动过程中从合法窗口开始一直到非合法窗口，在移动左指针使窗口不合法的过程中，从合法窗口的到不合法窗口的过程中，由于子数组越长越合法，因此所有移动之后在 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span> 左端开始的子数组都满足条件，因此满足合法窗口的数量有 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span>，那么只需要在求最长子数组的基础上修改贡献语句修改成 <span class="arithmatex"><span class="MathJax_Preview">res = res + left</span><script type="math/tex">res = res + left</script></span> 即可。</p>
+<h4 id="_13">例题<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<details>
+    <summary>
+        <a href="https://leetcode.cn/problems/count-the-number-of-good-subarrays/description/">leetcode灵神题单:2537. 统计好子数组的数目</a>    
+    </summary>
+
+​    给你一个整数数组 nums 和一个整数 k ，请你返回 nums 中 好 子数组的数目。 </br>
+​    一个子数组 arr 如果有 至少 k 对下标 (i, j) 满足 i < j 且 arr[i] == arr[j] ，那么称它是一个 好 子数组。 </br>
+​    子数组 是原数组中一段连续 非空 的元素序列。</br>
+​    示例 1： </br>
+​    输入：nums = [1,1,1,1,1], k = 10 </br>
+​    输出：1 </br>
+​    解释：唯一的好子数组是这个数组本身。 </br>
+​    示例 2： </br>
+​    输入：nums = [3,1,4,3,2,2,4], k = 2 </br>
+​    输出：4 </br>
+​    解释：总共有 4 个不同的好子数组： </br>
+​    - [3,1,4,3,2,2] 有 2 对。 </br>
+​    - [3,1,4,3,2,2,4] 有 3 对。 </br>
+​    - [1,4,3,2,2,4] 有 2 对。 </br>
+​    - [4,3,2,2,4] 有 2 对。 </br>
+​        提示： </br>
+​        1 <= nums.length <= 10<sup>5</sup> </br>
+​        1 <= nums[i], k <= 10<sup>9</sup> </br>
+​        </details>
+
+<details>
+    <summary>代码实现</summary>
+
+由题目中"至少存在 k 对"可得窗口临界条件，需要维护的信息有相等的对数，那么我们可以使用 hash表unordered_map 来维护窗口中每个数的存在的次数, 窗口合法状态为 cnt >= k, cnt 用来维护存在几对，当cnt >= k 时，left就要右移，将窗口缩小直到窗口内相等元素的元素对数 < k ，即 cnt < k，每次循环之后记一次贡献 res += left;
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">countGood</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hash</span><span class="p">;</span>
+
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">cnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">cnt</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">hash</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
+<span class="w">            </span><span class="n">hash</span><span class="p">[</span><span class="n">x</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">while</span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">hash</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="p">]]</span><span class="o">--</span><span class="p">;</span>
+<span class="w">                </span><span class="n">cnt</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">hash</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="p">]];</span>
+<span class="w">                </span><span class="n">l</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+</details>
+
+<h4 id="_14">恰好型<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<p>由上面两种类型可得，一个是用来求至少，一个是用来求至多，由于直接求<strong>恰好等于</strong>的滑动窗口并不好求，因为很难用一个具体的条件判断当前到达条件之后应该移动哪一个指针。故而可以转化一下思考，我们发现恰好等于 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 可以转化为两个<strong>至少型</strong>滑动窗口。即：</p>
+<ul>
+<li>计算有多少个 <span class="arithmatex"><span class="MathJax_Preview">&gt;= k</span><script type="math/tex">>= k</script></span> 的子数组。</li>
+<li>计算有多少个 <span class="arithmatex"><span class="MathJax_Preview">&gt;= k + 1</span><script type="math/tex">>= k + 1</script></span> 的子数组。</li>
+</ul>
+<p>那么这就是我们上面已经学到的越长越合法型的滑动窗口，我们可以有下面两种解决方法：</p>
+<ul>
+<li>写一个越长越合法型的函数 <span class="arithmatex"><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span> ，将临界条件 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 作为函数参数传入，那么可得 <span class="arithmatex"><span class="MathJax_Preview">ans = f(k) - f(k + 1)</span><script type="math/tex">ans = f(k) - f(k + 1)</script></span>。</li>
+<li>或者使用一对指针 <span class="arithmatex"><span class="MathJax_Preview">left1</span><script type="math/tex">left1</script></span> 和 <span class="arithmatex"><span class="MathJax_Preview">left2</span><script type="math/tex">left2</script></span>，分别来表示两个滑动窗口的窗口边界，也就是三指针法，那么可得 <span class="arithmatex"><span class="MathJax_Preview">ans = ans + (right - (left1 - left2))</span><script type="math/tex">ans = ans + (right - (left1 - left2))</script></span>。</li>
+</ul>
+<h4 id="_15">例题<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
+<details>
+    <summary>
+        <a href="https://leetcode.cn/problems/subarrays-with-k-different-integers/description/">leetcode灵神题单:992. K 个不同整数的子数组</a>  
+    </summary>
+
+​    给定一个正整数数组 nums和一个整数 k，返回 nums 中 「好子数组」 的数目。</br>
+​    如果 nums 的某个子数组中不同整数的个数恰好为 k，则称 nums 的这个连续、不一定不同的子数组为 「好子数组 」。 </br>
+​    例如，[1,2,3,1,2] 中有 3 个不同的整数：1，2，以及 3。 </br>
+​    子数组 是数组的 连续 部分。 </br>
+​    示例 1： </br>
+​    输入：nums = [1,2,1,2,3], k = 2 </br>
+​    输出：7 </br>
+​    解释：恰好由 2 个不同整数组成的子数组：[1,2], [2,1], [1,2], [2,3], [1,2,1], [2,1,2], [1,2,1,2]. </br>
+​    示例 2： </br>
+​    输入：nums = [1,2,1,3,4], k = 3 </br>
+​    输出：3 </br>
+​    解释：恰好由 3 个不同整数组成的子数组：[1,2,1,3], [2,1,3], [1,3,4]. </br>
+​    提示： </br>
+​    1 <= nums.length <= 2 * 10<sup>4</sup> </br>
+​    1 <= nums[i], k <= nums.length </br>
+</details>
+
+<details>
+    <summary>代码实现</summary>
+
+由题目不同整数个数恰好为 k 这一句，可以得到这是"恰好型"滑动窗口，我们可以转化为两个"至少型"滑动窗口，我们可以写一个滑动窗口函数，对于单个窗口来说需要维护的信息就一个窗口内不同元素个数可以使用哈希表unordered_map 和一个 count 计数来实现，窗口临界状态为 count >= k, 当 count >= k 时，就移动 left 缩小窗口内元素减少直到不合法，计算这一段合法子数组贡献为 res += left;那么总的问题答案就是 f(k) - f(k + 1)
+
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">subarraysWithKDistinct</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nums</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">int</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">hash</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nums</span><span class="p">.</span><span class="n">size</span><span class="p">();</span><span class="w"> </span><span class="n">r</span><span class="o">++</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">hash</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">]]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+<span class="w">                </span><span class="n">hash</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">r</span><span class="p">]]</span><span class="o">++</span><span class="p">;</span>
+
+<span class="w">                </span><span class="k">while</span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+<span class="w">                </span><span class="p">{</span>
+<span class="w">                    </span><span class="n">hash</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="p">]]</span><span class="o">--</span><span class="p">;</span>
+<span class="w">                    </span><span class="k">if</span><span class="p">(</span><span class="n">hash</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">l</span><span class="p">]]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">                    </span><span class="p">{</span>
+<span class="w">                        </span><span class="n">count</span><span class="o">--</span><span class="p">;</span>
+<span class="w">                    </span><span class="p">}</span>
+<span class="w">                    </span><span class="n">l</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="p">}</span>
+
+<span class="w">                </span><span class="n">res</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">res</span><span class="p">;</span>
+<span class="w">        </span><span class="p">};</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+
+</details>
+
+<h2 id="_16">总结<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>滑动窗口是算法入门的基础，掌握好滑动窗口有助于我们养成编程基础思维，也是后续复杂算法的基石。
+题单推荐：<a href="https://leetcode.cn/discuss/post/3578981/ti-dan-hua-dong-chuang-kou-ding-chang-bu-rzz7/">分享丨【算法题单】滑动窗口与双指针（定长/不定长/单序列/双序列/三指针/分组循环）</a> 建议对于刚刚入门先把滑动窗口内容1700分以下的题目刷完，有能力的可以2000以下。</p>
+<blockquote>
+<p>ps:查看leetcode难度分数的插件在资源汇总栏有链接下载</p>
+</blockquote>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="最后更新">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月17日 13:30:57 UTC">2025年12月17日</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sidebar", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "palette.toggle", "content.tooltips", "navigation.expand"], "search": "../../assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="../../javascripts/highlight.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

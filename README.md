@@ -11,5 +11,5 @@
 ## 🛠️ 本地使用
 ### 1. 克隆仓库
 ```bash
-git clone https://github.com/Sakura-lq/Re0-The-ACM-Journey-Starting-from-Zero.git
+git clone https://nearl-mlynar.github.io/Re0-The-ACM-Journey-Starting-from-Zero.git
 cd Re0-The-ACM-Journey-Starting-from-Zero

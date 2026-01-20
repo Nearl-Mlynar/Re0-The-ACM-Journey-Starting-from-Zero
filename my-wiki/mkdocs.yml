@@ -1,8 +1,8 @@
 site_name: Re0-The-ACM-Journey-Starting-from-Zero
-site_url: https://github.com/Sakura-lq/Re0-The-ACM-Journey-Starting-from-Zero  # 改为实际仓库URL（避免指向OI-Wiki官网）
+site_url: https://github.com/Nearl-Mlynar/Re0-The-ACM-Journey-Starting-from-Zero  # 改为实际仓库URL（避免指向OI-Wiki官网）
 site_description: 从零开始的 ACM 学习之路，参考 OI-Wiki 风格整理的算法与数据结构笔记
-site_author: Sakura-lq  # 替换为实际作者名
-repo_url: https://github.com/Sakura-lq/Re0-The-ACM-Journey-Starting-from-Zero
+site_author: Nearl-Mlynar # 替换为实际作者名
+repo_url: https://github.com/Nearl-Mlynar/Re0-The-ACM-Journey-Starting-from-Zero
 repo_name: Re0-ACM-Journey
 edit_uri: edit/main/docs/  # 确保 docs 是文档根目录（MkDocs默认）
 

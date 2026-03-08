@@ -38,6 +38,7 @@ theme:
     - palette.toggle  # 明暗模式切换
     - content.tooltips  # 悬浮提示（术语/公式友好）
     - navigation.expand  # 侧边栏默认展开所有层级（ACM多级分类更方便）
+    - mathjax # 启用 MathJax 渲染开关
   font:
     text: "Noto Sans SC"  # 中文适配（和OI-Wiki一致）
     code: "Consolas"  # 代码等宽字体
@@ -54,7 +55,7 @@ extra_css:
 extra_javascript:
   - javascripts/highlight.js  # 代码高亮（若需自定义颜色，可在css中配置）
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
-
+  - javascripts/mathjax-config.js
 # 导航配置：仅修复语法错误（basic_data_structure.md → 基本数据结构.md），其他完全保留你的原有结构
 nav:
   - 首页: index.md
@@ -131,3 +132,6 @@ markdown_extensions:
   - codehilite:
       guess_lang: false
   - meta:
+  - pymdownx.arithmatex:
+      generic: true  # 必须开启，让 arithmatex 生成 MathJax 兼容的 HTML
+      smart_dollar: false  # 关闭智能美元符号检测，避免误判

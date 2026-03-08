@@ -496,6 +496,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../%E4%BA%8C%E5%88%86/%E4%BA%8C%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -510,10 +538,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
             
   
   
@@ -531,8 +559,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2225,7 +2253,7 @@
 <h2 id="_1">优先队列的核心特性<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>基于堆结构：内部使用堆（完全二叉树）维护元素优先级。</li>
-<li>动态调整：插入和删除操作的时间复杂度为 <span class="arithmatex"><span class="MathJax_Preview">O(log n)</span><script type="math/tex">O(log n)</script></span>。</li>
+<li>动态调整：插入和删除操作的时间复杂度为 <span class="arithmatex">\(O(log n)\)</span>。</li>
 <li>固定访问点：只能访问队首元素（优先级最高的元素）。</li>
 </ul>
 <h2 id="_2">优先队列的定义与模板参数<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -2262,31 +2290,31 @@
 <tr>
 <td><strong>插入元素</strong></td>
 <td><code>push(value)</code></td>
-<td><span class="arithmatex"><span class="MathJax_Preview">O(log n)</span><script type="math/tex">O(log n)</script></span></td>
+<td><span class="arithmatex">\(O(log n)\)</span></td>
 <td>将元素插入队列，并调整堆结构。</td>
 </tr>
 <tr>
 <td><strong>删除队首元素</strong></td>
 <td><code>pop()</code></td>
-<td><span class="arithmatex"><span class="MathJax_Preview">O(log n)</span><script type="math/tex">O(log n)</script></span></td>
+<td><span class="arithmatex">\(O(log n)\)</span></td>
 <td>删除优先级最高的元素（堆顶）。</td>
 </tr>
 <tr>
 <td><strong>获取队首元素</strong></td>
 <td><code>top()</code></td>
-<td><span class="arithmatex"><span class="MathJax_Preview">O(1)</span><script type="math/tex">O(1)</script></span></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
 <td>返回优先级最高的元素，但不删除。</td>
 </tr>
 <tr>
 <td><strong>判断队列是否为空</strong></td>
 <td><code>empty()</code></td>
-<td><span class="arithmatex"><span class="MathJax_Preview">O(1)</span><script type="math/tex">O(1)</script></span></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
 <td>若队列为空，返回<code>true</code>。</td>
 </tr>
 <tr>
 <td><strong>获取队列大小</strong></td>
 <td><code>size()</code></td>
-<td><span class="arithmatex"><span class="MathJax_Preview">O(1)</span><script type="math/tex">O(1)</script></span></td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
 <td>返回队列中元素的数量。</td>
 </tr>
 </tbody>
@@ -2481,10 +2509,10 @@
 <ol>
 <li>空队列检查：调用 <code>top()</code> 或 <code>pop()</code> 前必须确保队列非空。</li>
 <li>比较函数严格弱序：避免 <code>operator&lt;</code> 或自定义比较函数导致的重复元素判断错误。</li>
-<li>性能优化：批量插入时使用构造函数 <span class="arithmatex"><span class="MathJax_Preview">O(n)</span><script type="math/tex">O(n)</script></span> 而非逐个插入 <span class="arithmatex"><span class="MathJax_Preview">O(n log n)</span><script type="math/tex">O(n log n)</script></span>.</li>
+<li>性能优化：批量插入时使用构造函数 <span class="arithmatex">\(O(n)\)</span> 而非逐个插入 <span class="arithmatex">\(O(n log n)\)</span>.</li>
 </ol>
 <h2 id="_15">总结<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
-<p>C++优先队列通过灵活的比较函数支持最大堆和最小堆，适用于动态维护优先级的场景。其核心操作的时间复杂度为 <span class="arithmatex"><span class="MathJax_Preview">O(log n)</span><script type="math/tex">O(log n)</script></span> ，结合自定义类型和 <span class="arithmatex"><span class="MathJax_Preview">Lambda</span><script type="math/tex">Lambda</script></span> 表达式，能高效解决任务调度、图算法、数据筛选等问题。</p>
+<p>C++优先队列通过灵活的比较函数支持最大堆和最小堆，适用于动态维护优先级的场景。其核心操作的时间复杂度为 <span class="arithmatex">\(O(log n)\)</span> ，结合自定义类型和 <span class="arithmatex">\(Lambda\)</span> 表达式，能高效解决任务调度、图算法、数据筛选等问题。</p>
 
 
 
@@ -2563,7 +2591,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sidebar", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "palette.toggle", "content.tooltips", "navigation.expand"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.sidebar", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "palette.toggle", "content.tooltips", "navigation.expand", "mathjax"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
@@ -2571,6 +2599,8 @@
         <script src="../javascripts/highlight.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/mathjax-config.js"></script>
       
     
   </body>

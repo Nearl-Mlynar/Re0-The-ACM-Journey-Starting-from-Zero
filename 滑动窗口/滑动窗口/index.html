@@ -18,7 +18,7 @@
         <link rel="prev" href="../..">
       
       
-        <link rel="next" href="../../%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+        <link rel="next" href="../../%E4%BA%8C%E5%88%86/%E4%BA%8C%E5%88%86/">
       
       
         
@@ -664,6 +664,34 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../%E4%BA%8C%E5%88%86/%E4%BA%8C%E5%88%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二分
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
     
@@ -678,10 +706,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
         
           
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
             
   
   
@@ -699,8 +727,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_2">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -2001,17 +2029,16 @@
 <blockquote>
 <p>总结：滑动窗口这类题就是要找到：窗口改变的临界条件，窗口的长度，需要维护的信息</p>
 <p><img alt="滑动窗口题单 双指针题单 力扣题目 灵茶山艾府" src="https://pic.leetcode.cn/1718242805-sqSjqc-lc1456.png" /></p>
-<p>ps 图片引用自：leetcode灵神题单(https://leetcode.cn/discuss/post/3578981/ti-dan-hua-dong-chuang-kou-ding-chang-bu-rzz7/) </p>
+<p>ps：图片引用自：leetcode灵神题单(https://leetcode.cn/discuss/post/3578981/ti-dan-hua-dong-chuang-kou-ding-chang-bu-rzz7/) </p>
 </blockquote>
 <h2 id="_2">定长滑动窗口<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>定长滑动窗口其实顾名思义也就是窗口长度一定的滑动窗口，一般在题目中会具有鲜明的特点，例如：连续数组/子串/子序列长度为 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 等。
-关于这种定长的题目常常以到达长度 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 作为窗口移动状态，然后元素的维护，贡献总计也大多数是在判定条件为 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 时进行操作与维护的。</p>
+<p>定长滑动窗口其实顾名思义也就是窗口长度一定的滑动窗口，一般在题目中会具有鲜明的特点，例如：连续数组/子串/子序列长度为 <span class="arithmatex">\(k\)</span> 等。
+关于这种定长的题目常常以到达长度 <span class="arithmatex">\(k\)</span> 作为窗口移动状态，然后元素的维护，贡献总计也大多数是在判定条件为 <span class="arithmatex">\(k\)</span> 时进行操作与维护的。</p>
 <h3 id="_3">例题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <details> 
     <summary>
     <a href="https://leetcode.cn/problems/maximum-number-of-vowels-in-a-substring-of-given-length/">灵神题单模板题:1456. 定长子串中元音的最大数目</a>   
     </summary>
-
 ​    给你字符串 s 和整数 k 。<br>
 ​    请返回字符串 s 中长度为 k 的单个子字符串中可能包含的最大元音字母数。<br>
 ​    英文中的 元音字母 为（a, e, i, o, u）。<br>
@@ -2035,7 +2062,7 @@
 ​    输入：s = "tryhard", k = 4<br>
 ​    输出：1<br>
 ​    提示：<br>
-​    1 <= s.length <= 10^5<br>
+​    1 <= s.length <= 10e5<br>
 ​    s 由小写英文字母组成<br>
 ​    1 <= k <= s.length<br>
 </details>
@@ -2105,7 +2132,7 @@
 ​    输入：s = "abcde", maxLetters = 2, minSize = 3, maxSize = 3 </br>
 ​    输出：0 </br>
 ​    提示：</br>
-​    1 <= s.length <= 10^5 </br>
+​    1 <= s.length <= 10e5 </br>
 ​    1 <= maxLetters <= 26 </br>
 ​    1 <= minSize <= maxSize <= min(26, s.length) </br>
 ​    s 只包含小写英文字母。</br>  
@@ -2164,7 +2191,7 @@
 <h2 id="_4">不定长的滑动窗口<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>不定长滑动窗口并没有在题目中具体的长度规定，一般是满足限制条件即为一个窗口的长度，例如：一段连续子串中至少需要包含所有元音字母的最小/最大字串等等，因此在不定长滑动窗口主要可以分为三类问题：求最长子数组，求最短子数组，求满足特定要求的所有子数组个数。</p>
 <h3 id="_5">最长子数组<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p>一般在这个问题中，一般满足窗口大小<strong>越短越合法</strong>，并且一般都是以限制长度的最大值的条件，也就是<strong>至少</strong>的问题，因此我们窗口的状态大概是 合法 -&gt; 不合法 -&gt; 合法，如果合法就一直移动右指针 <span class="arithmatex"><span class="MathJax_Preview">right</span><script type="math/tex">right</script></span> 使数组扩大，如果扩大之后使当前窗口不合法，那么就一直移动左指针直到窗口重新变成合法窗口，每次循环都记一次大小 <span class="arithmatex"><span class="MathJax_Preview">(mx = max(mx, right - left + 1))</span><script type="math/tex">(mx = max(mx, right - left + 1))</script></span>。</p>
+<p>一般在这个问题中，一般满足窗口大小<strong>越短越合法</strong>，并且一般都是以限制长度的最大值的条件，也就是<strong>至少</strong>的问题，因此我们窗口的状态大概是 合法 -&gt; 不合法 -&gt; 合法，如果合法就一直移动右指针 <span class="arithmatex">\(right\)</span> 使数组扩大，如果扩大之后使当前窗口不合法，那么就一直移动左指针直到窗口重新变成合法窗口，每次循环都记一次大小 <span class="arithmatex">\((mx = max(mx, right - left + 1))\)</span>。</p>
 <h3 id="_6">例题<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <details>
     <summary>
@@ -2219,7 +2246,7 @@
 </details>
 
 <h3 id="_7">最短子数组<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p>在这个问题中与上一个问题相反，一般在这个问题中<strong>越长越合法</strong>，并且一般都是限制了窗口的最小长度也就是<strong>至多</strong>的问题，因此我们的窗口状态是 不合法 -&gt; 合法 -&gt; 不合法，如果不合法就一直移动右指针 <span class="arithmatex"><span class="MathJax_Preview">right</span><script type="math/tex">right</script></span> 使数组扩大，如果扩大之后使当前窗口合法，那么就一直移动左指针 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span> 直到窗口重新变成不合法窗口，每次循环都记一次大小 <span class="arithmatex"><span class="MathJax_Preview">(mm = min(mm, right - left + 1))</span><script type="math/tex">(mm = min(mm, right - left + 1))</script></span>。</p>
+<p>在这个问题中与上一个问题相反，一般在这个问题中<strong>越长越合法</strong>，并且一般都是限制了窗口的最小长度也就是<strong>至多</strong>的问题，因此我们的窗口状态是 不合法 -&gt; 合法 -&gt; 不合法，如果不合法就一直移动右指针 <span class="arithmatex">\(right\)</span> 使数组扩大，如果扩大之后使当前窗口合法，那么就一直移动左指针 <span class="arithmatex">\(left\)</span> 直到窗口重新变成不合法窗口，每次循环都记一次大小 <span class="arithmatex">\((mm = min(mm, right - left + 1))\)</span>。</p>
 <h3 id="_8">例题<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <details>
     <summary>
@@ -2302,7 +2329,7 @@
 <h3 id="_9">求子数组个数<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
 <p>在这一类问题中，常常会结合前面两类问题一起考，前面两类只需要找最长/最短的一段子数组长度就行，而这个是要计算所有满足特定条件的子数组的数量，在滑动窗口状态上没有什么差别，只是区别在计算贡献上，大概有以下三类子问题：越长越合法型，越短越合法型，恰好满足型。</p>
 <h4 id="_10">越短越合法型<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
-<p>根据上面对越短越合法型的子数组的状态转移(合法 -&gt; 不合法 -&gt; 合法)，当窗口合法时不断移动右指针 <span class="arithmatex"><span class="MathJax_Preview">right</span><script type="math/tex">right</script></span> 直到窗口变成非法，由此可得在移动过程中从非法窗口到第一个合法窗口，满足合法窗口的数量有 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span>，那么只需要在求最长子数组的基础上修改贡献语句修改成 <span class="arithmatex"><span class="MathJax_Preview">res = res + right - left + 1</span><script type="math/tex">res = res + right - left + 1</script></span> 即可。</p>
+<p>根据上面对越短越合法型的子数组的状态转移(合法 -&gt; 不合法 -&gt; 合法)，当窗口合法时不断移动右指针 <span class="arithmatex">\(right\)</span> 直到窗口变成非法，由此可得在移动过程中从非法窗口到第一个合法窗口，满足合法窗口的数量有 <span class="arithmatex">\(left\)</span>，那么只需要在求最长子数组的基础上修改贡献语句修改成 <span class="arithmatex">\(res = res + right - left + 1\)</span> 即可。</p>
 <h4 id="_11">例题<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
 <details>
     <summary>
@@ -2362,7 +2389,7 @@
 </details>
 
 <h4 id="_12">越长越合法型<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
-<p>根据上面对越长越合法型的子数组的状态转移(不合法 -&gt; 合法 -&gt; 不合法)，当窗口合法时不断移动左指针 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span> 直到窗口变成不合法，由此可得在移动过程中从合法窗口开始一直到非合法窗口，在移动左指针使窗口不合法的过程中，从合法窗口的到不合法窗口的过程中，由于子数组越长越合法，因此所有移动之后在 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span> 左端开始的子数组都满足条件，因此满足合法窗口的数量有 <span class="arithmatex"><span class="MathJax_Preview">left</span><script type="math/tex">left</script></span>，那么只需要在求最长子数组的基础上修改贡献语句修改成 <span class="arithmatex"><span class="MathJax_Preview">res = res + left</span><script type="math/tex">res = res + left</script></span> 即可。</p>
+<p>根据上面对越长越合法型的子数组的状态转移(不合法 -&gt; 合法 -&gt; 不合法)，当窗口合法时不断移动左指针 <span class="arithmatex">\(left\)</span> 直到窗口变成不合法，由此可得在移动过程中从合法窗口开始一直到非合法窗口，在移动左指针使窗口不合法的过程中，从合法窗口的到不合法窗口的过程中，由于子数组越长越合法，因此所有移动之后在 <span class="arithmatex">\(left\)</span> 左端开始的子数组都满足条件，因此满足合法窗口的数量有 <span class="arithmatex">\(left\)</span>，那么只需要在求最长子数组的基础上修改贡献语句修改成 <span class="arithmatex">\(res = res + left\)</span> 即可。</p>
 <h4 id="_13">例题<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
 <details>
     <summary>
@@ -2426,15 +2453,15 @@
 </details>
 
 <h4 id="_14">恰好型<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
-<p>由上面两种类型可得，一个是用来求至少，一个是用来求至多，由于直接求<strong>恰好等于</strong>的滑动窗口并不好求，因为很难用一个具体的条件判断当前到达条件之后应该移动哪一个指针。故而可以转化一下思考，我们发现恰好等于 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 可以转化为两个<strong>至少型</strong>滑动窗口。即：</p>
+<p>由上面两种类型可得，一个是用来求至少，一个是用来求至多，由于直接求<strong>恰好等于</strong>的滑动窗口并不好求，因为很难用一个具体的条件判断当前到达条件之后应该移动哪一个指针。故而可以转化一下思考，我们发现恰好等于 <span class="arithmatex">\(k\)</span> 可以转化为两个<strong>至少型</strong>滑动窗口。即：</p>
 <ul>
-<li>计算有多少个 <span class="arithmatex"><span class="MathJax_Preview">&gt;= k</span><script type="math/tex">>= k</script></span> 的子数组。</li>
-<li>计算有多少个 <span class="arithmatex"><span class="MathJax_Preview">&gt;= k + 1</span><script type="math/tex">>= k + 1</script></span> 的子数组。</li>
+<li>计算有多少个 <span class="arithmatex">\(&gt;= k\)</span> 的子数组。</li>
+<li>计算有多少个 <span class="arithmatex">\(&gt;= k + 1\)</span> 的子数组。</li>
 </ul>
 <p>那么这就是我们上面已经学到的越长越合法型的滑动窗口，我们可以有下面两种解决方法：</p>
 <ul>
-<li>写一个越长越合法型的函数 <span class="arithmatex"><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span> ，将临界条件 <span class="arithmatex"><span class="MathJax_Preview">k</span><script type="math/tex">k</script></span> 作为函数参数传入，那么可得 <span class="arithmatex"><span class="MathJax_Preview">ans = f(k) - f(k + 1)</span><script type="math/tex">ans = f(k) - f(k + 1)</script></span>。</li>
-<li>或者使用一对指针 <span class="arithmatex"><span class="MathJax_Preview">left1</span><script type="math/tex">left1</script></span> 和 <span class="arithmatex"><span class="MathJax_Preview">left2</span><script type="math/tex">left2</script></span>，分别来表示两个滑动窗口的窗口边界，也就是三指针法，那么可得 <span class="arithmatex"><span class="MathJax_Preview">ans = ans + (right - (left1 - left2))</span><script type="math/tex">ans = ans + (right - (left1 - left2))</script></span>。</li>
+<li>写一个越长越合法型的函数 <span class="arithmatex">\(f\)</span> ，将临界条件 <span class="arithmatex">\(k\)</span> 作为函数参数传入，那么可得 <span class="arithmatex">\(ans = f(k) - f(k + 1)\)</span>。</li>
+<li>或者使用一对指针 <span class="arithmatex">\(left1\)</span> 和 <span class="arithmatex">\(left2\)</span>，分别来表示两个滑动窗口的窗口边界，也就是三指针法，那么可得 <span class="arithmatex">\(ans = ans + (right - (left1 - left2))\)</span>。</li>
 </ul>
 <h4 id="_15">例题<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
 <details>
@@ -2532,7 +2559,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月22日 15:04:48 UTC">2025年12月22日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月8日 14:11:54 UTC">2026年3月8日</span>
   </span>
 
     
@@ -2590,7 +2617,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sidebar", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "palette.toggle", "content.tooltips", "navigation.expand"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sidebar", "navigation.tabs", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "palette.toggle", "content.tooltips", "navigation.expand", "mathjax"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
@@ -2598,6 +2625,8 @@
         <script src="../../javascripts/highlight.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/mathjax-config.js"></script>
       
     
   </body>

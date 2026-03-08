@@ -60,6 +60,7 @@ nav:
   - 首页: index.md
   - 算法:
     - 滑动窗口/滑动窗口.md
+    - 二分/二分.md
     - 字符串:
       - 字符串/KMP算法.md
       - 字符串/Manacher算法.md
@@ -106,7 +107,7 @@ plugins:
             show_source: true  # 显示代码源文件（方便查看实现）
   - git-revision-date-localized:  # 新增：显示文档最后更新时间（提升可信度）
       type: date
-      format: yyyy-MM-dd 
+      format: "yyyy-MM-dd HH:mm"
       locale: zh
 
 # Markdown扩展：完全保留你的原有配置，不做任何改动

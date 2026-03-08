@@ -110,6 +110,9 @@ plugins:
       type: date
       format: "yyyy-MM-dd HH:mm"
       locale: zh
+      timezone: "Asia/Shanghai"
+      fallback_to_build_date: true
+      enable_creation_date: true
 
 # Markdown扩展：完全保留你的原有配置，不做任何改动
 markdown_extensions:
